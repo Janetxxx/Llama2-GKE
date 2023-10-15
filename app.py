@@ -33,7 +33,7 @@ def invoke_llama2_model(text):
 def generate_poem(poet, input_text):
     poet_prefix = POET_PREFIXES.get(poet)
     if poet_prefix is not None:
-        input_with_prefix = f"Generate a poem using {poet_prefix}: '{input_text}'"
+        input_with_prefix = f"Generate a poem using {poet_prefix}:\"{input_text}\""
         llama2_response = invoke_llama2_model(input_with_prefix)
         return llama2_response
     else:
@@ -46,19 +46,7 @@ iface = gr.Interface(
     inputs=[
         gr.Dropdown(
             label="Select a Poet:",
-            choices=[
-                "William Shakespeare",
-                "Edgar Allan Poe",
-                "Maya Angelou",
-                "Emily Dickinson",
-                "Shel Silverstein",
-                "Robert Frost",
-                "Pablo Neruda",
-                "William Butler Yeats",
-                "Sylvia Plath",
-                "William Wordsworth",
-                "John Keats",
-            ],
+            choices=list(POET_PREFIXES.keys()),
         ),
         gr.Textbox(label="Enter a sentence:"),
     ],
