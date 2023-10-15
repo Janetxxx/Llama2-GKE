@@ -1,5 +1,3 @@
-
-
 ARG PYVERSION=py39
 FROM --platform=linux/amd64 baseten/truss-server-base:3.10-gpu-v0.4.9 as truss_server
 
@@ -16,33 +14,11 @@ RUN pip install --upgrade pip --no-cache-dir \
 
 
 # If user base image is supplied in config, apply build commands from truss base image
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 COPY ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir && rm -rf /root/.cache/pip
 
-
-
-
-
-
 ENV APP_HOME /app
 WORKDIR $APP_HOME
-
-
 
 # Copy data before code for better caching
 COPY ./data /app/data
@@ -51,17 +27,7 @@ COPY ./server /app
 COPY ./model /app/model
 COPY ./config.yaml /app/config.yaml
 
-
-
-
-
-
 COPY ./packages /packages
-
-
-
-
-
 
 ENV INFERENCE_SERVER_PORT 8080
 ENV SERVER_START_CMD="python3 /app/inference_server.py"
