@@ -5,9 +5,9 @@ import requests
 LLAMA2_API_URL = "http://35.222.166.196:8080/v1/models/model:predict"
 
 # Define a dictionary for poet prefixes
-# Define a dictionary for poet prefixes
 POET_PREFIXES = {
-    poet: f"{poet}'s voice" for poet in [
+    poet: f"{poet}'s voice"
+    for poet in [
         "William Shakespeare",
         "Edgar Allan Poe",
         "Maya Angelou",
@@ -46,32 +46,30 @@ def generate_poem(poet, input_text):
         return "Invalid poet selection"
 
 
+# Define a function to validate poem styles
 def validate_poem(poet, generated_text):
-    prompt = f"Does this poem {generated_text} sounds like {poet}'s voice style?"
+    prompt = f"Does this poem {generated_text} sound like {poet}'s voice style?"
     llama2_response = invoke_llama2_model(prompt)
-    
+
     return llama2_response
 
 
+# Gradio interface layout
 with gr.Blocks() as demo:
-    gr.Markdown("# <center>Poem Generator in Different Voices</center>")
+    gr.Markdown("# <center>Llama 2 Poem Generator in Different Voices</center>")
     with gr.Tab("Poem Generator"):
-        text_input = [  # Change from tuple to list
-            gr.Dropdown(
-                label="Select a Poet:",
-                choices=list(POET_PREFIXES.keys()),
-            ),
-            gr.Textbox(label="Generated Poem:"),
+        text_input = [  
+            gr.Dropdown(label="Select a Poet:", choices=list(POET_PREFIXES.keys()),),
+            gr.Textbox(label="Input a sentence:"),
         ]
         text_button = gr.Button("Generate Poem")
         text_output = gr.Textbox(label="Poem in Poet's Voice:")
 
     with gr.Tab("Poem Checker"):
         with gr.Row():
-            poem_input = [  # Change from tuple to list
+            poem_input = [ 
                 gr.Dropdown(
-                    label="Select a Poet:",
-                    choices=list(POET_PREFIXES.keys()),
+                    label="Select a Poet:", choices=list(POET_PREFIXES.keys()),
                 ),
                 gr.Textbox(label="Validate Poem:"),
             ]
@@ -81,5 +79,5 @@ with gr.Blocks() as demo:
     text_button.click(generate_poem, inputs=text_input, outputs=text_output)
     image_button.click(validate_poem, inputs=poem_input, outputs=validate_output)
 
+# Launch Gradio Interface
 demo.launch()
-
