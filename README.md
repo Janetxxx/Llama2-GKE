@@ -15,7 +15,6 @@ We're excited to share a creative project that explores the world of poetry gene
 
 ## Take a Visual Tour
 ### Screenshots of our Poem Generator Web App
-### Screenshots
 
 ![Poem Generation Interface](./images/poem-generator.png?raw=true "Poem Generation Interface")
    - Description: This screenshot showcases the user interface for generating poem.
