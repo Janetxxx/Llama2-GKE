@@ -6,8 +6,6 @@ Research Project - Spring 2023
 Author: Xinyi Cui 
 Supervisor: Dr. Wei Liu
 ```
-Check out the [Demonstration Video](https://drive.google.com/file/d/1YG93mXhW-0ym38fKk-ciLL1MndS5Xh3f/view?usp=sharing).
-
 
 ## Introduction
 
